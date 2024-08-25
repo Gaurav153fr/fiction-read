@@ -17,7 +17,7 @@ async function getAllSeries() {
     return series;
   } catch (error) {
     console.error("Error fetching all series:", error);
-    throw new Error("Could not fetch series");
+    return null
   }
 }
 
