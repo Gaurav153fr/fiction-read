@@ -18,6 +18,8 @@ import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 export default async function LatestCHapterContainer() {
   const chapters = await getLatestChapters();
+  if (chapters == null) return <div>no chapters</div>;
+
   const premium = chapters.filter((e) => e.premium);
   const free = chapters.filter((e) => !e.premium);
 dayjs.extend(relativeTime)
