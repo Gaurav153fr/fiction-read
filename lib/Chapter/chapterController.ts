@@ -3,57 +3,82 @@ import chapterModel from "./chapterModel";
 
 async function createChapter(data: any): Promise<boolean> {
   try {
-    const series = await chapterModel.create(data);
+    await chapterModel.create(data);
     return true;
   } catch (err) {
-    console.log(err);
+    console.error("Error creating chapter:", err);
     return false;
   }
 }
 
 async function getAllChapter(id: string) {
-  const chapters = await chapterModel.find({ series: id });
-
-  return chapters;
-}
-async function updateChapter(id: string,data:any) {
-  console.log(data);
-  
-  try{
-  const chapters = await chapterModel.findByIdAndUpdate(id,data);
-  return true;
-
-  }catch(err){
-    console.log(err);
-    return false
+  try {
+    const chapters = await chapterModel.find({ series: id });
+    return chapters;
+  } catch (err) {
+    console.error("Error fetching all chapters:", err);
+    return null;
   }
 }
+
+async function updateChapter(id: string, data: any): Promise<boolean> {
+  try {
+    await chapterModel.findByIdAndUpdate(id, data);
+    return true;
+  } catch (err) {
+    console.error("Error updating chapter:", err);
+    return false;
+  }
+}
+
 async function getChapterById(id: string) {
-  const chapter = await chapterModel.findById(id).lean<chapterType>();
-  if (chapter) {
-    // Convert _id to string
-    chapter._id = chapter._id.toString();
+  try {
+    const chapter = await chapterModel.findById(id).lean<chapterType>();
+    if (chapter) {
+      // Convert _id to string
+      chapter._id = chapter._id.toString();
+    }
+    return chapter;
+  } catch (err) {
+    console.error("Error fetching chapter by ID:", err);
+    return null;
   }
-  return chapter;
 }
-// async function getSeriesChapter(id:string) {
-//   const chapters = await seriesModel.find()
-// }
 
 async function ajuBajuChapter(id: string, no: number) {
-  const prev = await chapterModel
-    .findOne({ series: id, no: { $lt: no } })
-    .select("_id");
-  console.log(prev);
-  const next = await chapterModel
-    .findOne({ series: id, no: { $gt: no } })
-    .select("_id");
-  console.log(next);
-  return [prev?prev.id:null, next?next.id:null];
-}
-async function getLatestChapters() {
-  const chapters = await chapterModel.find().sort({ updatedAt: -1 });
-  return chapters
+  try {
+    const prev = await chapterModel
+      .findOne({ series: id, no: { $lt: no } })
+      .select("_id");
+    console.log(prev);
+    
+    const next = await chapterModel
+      .findOne({ series: id, no: { $gt: no } })
+      .select("_id");
+    console.log(next);
+    
+    return [prev ? prev.id : null, next ? next.id : null];
+  } catch (err) {
+    console.error("Error fetching adjacent chapters:", err);
+    return [null, null];
+  }
 }
 
-export { createChapter, getAllChapter, getChapterById, ajuBajuChapter,getLatestChapters,updateChapter };
+async function getLatestChapters() {
+  try {
+    const chapters = await chapterModel.find().sort({ updatedAt: -1 });
+    return chapters;
+  } catch (err) {
+    console.error("Error fetching latest chapters:", err);
+    return null;
+  }
+}
+
+export { 
+  createChapter, 
+  getAllChapter, 
+  getChapterById, 
+  ajuBajuChapter, 
+  getLatestChapters, 
+  updateChapter 
+};

@@ -1,28 +1,12 @@
 "use server";
-import { promises } from "dns";
 import seriesModel from "./seriesModel";
-
-// interface seriesData {
-//   title: { en: string; ko: string };
-//   url: string;
-//   story: string;
-//   views: number;
-//   rating: number;
-//   genres: string[];
-//   chapters: string[];
-//   _id: string;
-//   createdAt: Date;
-//   updatedAt: Date;
-//   __v: number;
-// }
 
 async function createSeries(data: any): Promise<boolean> {
   try {
-    const series = await seriesModel.create(data);
+    await seriesModel.create(data);
     return true;
-  } catch (err:any){
-    console.log(err);
-    
+  } catch (err: any) {
+    console.error("Error creating series:", err);
     return false;
   }
 }
@@ -38,8 +22,13 @@ async function getAllSeries() {
 }
 
 async function getSeriesById(id: string) {
-  const chapters = await seriesModel.findById(id);
-  return chapters;
+  try {
+    const series = await seriesModel.findById(id);
+    return series;
+  } catch (error) {
+    console.error(`Error fetching series by ID (${id}):`, error);
+    return null;
+  }
 }
 
 async function getSeriesByGenre(genre: string) {
@@ -47,10 +36,9 @@ async function getSeriesByGenre(genre: string) {
     const series = await seriesModel.find({ genres: genre });
     return series;
   } catch (err) {
-    console.log(err);
-
+    console.error("Error fetching series by genre:", err);
     return null;
   }
 }
 
-export { createSeries, getAllSeries, getSeriesByGenre ,getSeriesById};
+export { createSeries, getAllSeries, getSeriesByGenre, getSeriesById };
