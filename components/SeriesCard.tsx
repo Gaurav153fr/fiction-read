@@ -32,7 +32,7 @@ const SeriesCard = async({ series }: { series: seriesType }) => {
       </div>
       <div className="flex gap-2 mt-2">
       <div className="flex gap-2 bg-blue-900 border border-blue-600 w-fit rounded-full px-2">
-      {chapters.length} chapters</div>
+      {chapters &&(<>{chapters.length}</>)} chapters</div>
       <div className="flex gap-2 bg-green-900 border border-green-600 w-fit rounded-full px-2">
       {series.status}</div></div>
       </div>
