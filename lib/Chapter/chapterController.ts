@@ -1,9 +1,11 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import chapterModel from "./chapterModel";
 
 async function createChapter(data: any): Promise<boolean> {
   try {
     await chapterModel.create(data);
+    revalidatePath("/chapter")
     return true;
   } catch (err) {
     console.error("Error creating chapter:", err);

@@ -1,9 +1,11 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import seriesModel from "./seriesModel";
 
 async function createSeries(data: any): Promise<boolean> {
   try {
     await seriesModel.create(data);
+    revalidatePath("/");
     return true;
   } catch (err: any) {
     console.error("Error creating series:", err);
@@ -17,7 +19,7 @@ async function getAllSeries() {
     return series;
   } catch (error) {
     console.error("Error fetching all series:", error);
-    return null
+    return null;
   }
 }
 
