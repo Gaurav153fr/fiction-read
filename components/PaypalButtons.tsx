@@ -18,7 +18,7 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({ amount, onSuccess }) => {
       if (session?.user?.email && session.user.name) {
         const data = await getUser(session.user.email, session.user.name);
         if (data) {
-          setUser(data.id);
+          setUser(data._id);
         }
       }
     };
