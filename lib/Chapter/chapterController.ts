@@ -5,6 +5,7 @@ import chapterModel from "./chapterModel";
 async function createChapter(data: any): Promise<boolean> {
   try {
     await chapterModel.create(data);
+    revalidatePath('/')
     revalidatePath("/chapter")
     return true;
   } catch (err) {
