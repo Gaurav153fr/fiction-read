@@ -31,6 +31,7 @@ import { SelectGroup } from "@radix-ui/react-select";
 import { Star } from "lucide-react";
 import { useUserContext } from "@/hooks/user";
 import { useRouter } from "next/navigation";
+import { Label } from "@/components/ui/label";
 
 // Define the schema for form validation using Zod
 const FormSchema = z.object({
@@ -47,7 +48,7 @@ const FormSchema = z.object({
   status: z.string().min(1, {
     message: "select a series",
   }),
-  updateOn: z.number().min(1).max(7),
+  updateOn: z.string().array().min(1).max(3).default([]),
 });
 
 // Form component
@@ -60,7 +61,7 @@ export default function Page() {
       url: "",
       story: "",
       status: "",
-      updateOn: 1,
+      updateOn: [],
     },
   });
   const user = useUserContext();
@@ -71,6 +72,9 @@ export default function Page() {
   const [star, setStar] = useState<number>(1);
 
   // Handle form submission
+
+  const genres = ["Action", "Comedy", "Drama", "Fantasy", "Horror"];
+  const days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(genre);
 
@@ -119,6 +123,8 @@ export default function Page() {
         : [...prevGenres, selectedGenre]
     );
   };
+
+ 
 
   if (user.user) {
     if (!user.user?.admin) {
@@ -234,69 +240,62 @@ export default function Page() {
                 />
                 {/* {//update on} */}
                 <FormField
-                  control={form.control}
-                  name="updateOn"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Update Day</FormLabel>
-                      <FormControl>
-                        <Select
-                          onValueChange={(value) =>
-                            field.onChange(parseInt(value))
-                          }
-                          value={field.value.toString()}
-                        >
-                          <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Select a weekday" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectLabel>Status</SelectLabel>
-                              <SelectItem value="1">Sunday</SelectItem>
-                              <SelectItem value="2">Monday</SelectItem>
-                              <SelectItem value="3">Tuesday</SelectItem>
-                              <SelectItem value="4">Wednesday</SelectItem>
-                              <SelectItem value="5">Thursday</SelectItem>
-                              <SelectItem value="6">Friday</SelectItem>
-                              <SelectItem value="7">Saturday</SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+      control={form.control}
+      name="updateOn"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Update On</FormLabel>
+          <FormControl>
+            <div className="flex flex-wrap gap-5">
+              
+           {days.map((day) => (
+              <div className="flex items-center space-x-2 w-20" key={day}>
+              <Checkbox
+                id={day}
+                onCheckedChange={(checked: boolean) => {
+                  const currentValue = Array.isArray(field.value)
+                    ? field.value
+                    : [];
+                  const newValue: string[] = checked
+                    ? [...currentValue, day]
+                    : currentValue.filter((value) => value !== day);
+                  field.onChange(newValue);
+                }}
+                checked={Array.isArray(field.value) && (field.value as string[]).includes(day)}
+              />
+              <Label htmlFor={day}>{day}</Label>
+            </div>
+         
+           ))}
+
+</div>
+             
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+
+
                 {/* Genre Selection */}
+                <span>Genres</span>
                 <div className="gap-2 flex">
-                  <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id="fantasy"
-                      onCheckedChange={(checked) => {
-                        toggleGenre("fantasy");
-                      }}
-                    />
-                    <label
-                      htmlFor="fantasy"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Fantasy
-                    </label>
-                  </div>
-                  <div className="flex items-center space-x-2 ">
-                    <Checkbox
-                      id="action"
-                      onCheckedChange={(checked) => {
-                        toggleGenre("action");
-                      }}
-                    />
-                    <label
-                      htmlFor="action"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Action
-                    </label>
-                  </div>
+                  {genres.map((genre) => (
+                    <div className="flex items-center space-x-2 " key={genre}>
+                      <Checkbox
+                        id={genre}
+                        onCheckedChange={(checked) => {
+                          toggleGenre(genre);
+                        }}
+                      />
+                      <label
+                        htmlFor={genre}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        {genre[0].toUpperCase() + genre.slice(1)}
+                      </label>
+                    </div>
+                  ))}
                 </div>
                 <div className="flex gap-2 flex-col">
                   <Input

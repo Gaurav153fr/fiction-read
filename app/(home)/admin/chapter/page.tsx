@@ -167,25 +167,7 @@ const Page = () => {
                     </FormItem>
                   )}
                 />
-                {/* Content */}
-
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Content</FormLabel>
-                      <FormControl>
-                        <RichTextEditor
-                          onValueChange={(value: string) =>
-                            field.onChange(value)
-                          }
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+             
 
                 <FormField
                   control={form.control}
@@ -221,6 +203,25 @@ const Page = () => {
                 />
 
                 <Button type="submit">Submit</Button>
+                   {/* Content */}
+
+                   <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Content</FormLabel>
+                      <FormControl>
+                        <RichTextEditor
+                          onValueChange={(value: string) =>
+                            field.onChange(value)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </form>
             </Form>
           )}

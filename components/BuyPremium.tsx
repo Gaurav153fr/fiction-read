@@ -23,10 +23,9 @@ const BuyPremium = ({ id, content }: { id: string; content: string }) => {
 
   const handleClick = () => {
     if (user) {
-      console.log("ha bhai dabaya");
-      console.log(user);
+      console.log("Buying this chapter", user._id);
 
-      buyChapter(user.id, user.points, id);
+      buyChapter(user._id, user.points, id);
       setBuy(true);
     }
   };
@@ -35,7 +34,7 @@ const BuyPremium = ({ id, content }: { id: string; content: string }) => {
       {session ? (
         <div>
           {user && (
-            <div >
+            <div>
               {user.purchased.indexOf(id) >= 0 ? (
                 <div>
                   <ReadEditor content={content} />

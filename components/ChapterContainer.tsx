@@ -11,12 +11,15 @@ import { Separator } from "./ui/separator";
 import { LockKeyhole } from "lucide-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Dispatch, SetStateAction } from "react";
 const ChapterContainer = async ({
   id,
   isSheet,
+ 
 }: {
   id: string;
   isSheet: boolean;
+ 
 }) => {
   console.log(id, "kk");
 
@@ -26,6 +29,7 @@ const ChapterContainer = async ({
   const premiumChapter = chapters.filter((e) => e.premium == true);
   const freeChapter = chapters.filter((e) => e.premium == false);
   dayjs.extend(relativeTime);
+
   return (
     <div className=" w-full ">
       {chapters.length > 0 ? (

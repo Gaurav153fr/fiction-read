@@ -69,7 +69,7 @@ async function ajuBajuChapter(id: string, no: number) {
 
 async function getLatestChapters() {
   try {
-    const chapters = await chapterModel.find().sort({ updatedAt: -1 });
+    const chapters = await chapterModel.find().sort({ updatedAt: -1 }).limit(15);
     return chapters;
   } catch (err) {
     console.error("Error fetching latest chapters:", err);

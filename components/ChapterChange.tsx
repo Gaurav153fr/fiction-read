@@ -17,7 +17,7 @@ const ChapterChange =  ({ id, no }: { id: string; no: number }) => {
   }, []);
 
   return (
-    <div className="bg-muted rounded-full flex ">
+    <div className="bg-muted rounded-full flex mb-5 ">
       {data && data[0] ? (
         <Link
           href={`/chapter/${data[0]}?n=${id}`}

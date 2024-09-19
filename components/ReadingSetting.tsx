@@ -30,14 +30,17 @@ const ReadingSetting = ({
 }) => {
   const decrease = () => {
     if (fontSize > 12) setFontSize(fontSize - 1);
+    localStorage.setItem("fontSize", String(fontSize));
   };
 
   const increase = () => {
     if (fontSize < 26) setFontSize(fontSize + 1);
+    localStorage.setItem("fontSize", String(fontSize));
   };
 
   const handleFontFamilyChange = (value: string) => {
     setFontFamily(value);
+    localStorage.setItem("fontFamily", value);
   };
 
   const [hidden, setHidden] = useState(false);
@@ -59,15 +62,19 @@ const ReadingSetting = ({
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
   return (
     <div
-      className="w-fixed fixed bottom-0 z-10 left-10 transition-transform flex justify-end gap-2"
+      className="w-fixed fixed bottom-5 z-10 left-10 transition-transform flex justify-end gap-2"
       style={{ transform: hidden ? "translateY(200%)" : "translateY(0%)" }}
     >
       <Button
         variant="outline"
         className="rounded-full"
-        onClick={() => "document.documentElement.scrollTop"}
+        onClick={handleScrollTop}
       >
         <ArrowUp />
       </Button>
@@ -150,7 +157,10 @@ const ReadingSetting = ({
                 max={6}
                 step={0.25}
                 min={1}
-                onValueChange={(e) => setLineHeight(e[0])}
+                onValueChange={(e) => {
+                  setLineHeight(e[0]);
+                  localStorage.setItem("lineHeight", e[0].toString());
+                }}
               />
               {lineHeight}
             </div>

@@ -1,20 +1,17 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
-  CardDescription,
+  
   CardFooter,
-  CardHeader,
-  CardTitle,
+
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getLatestChapters } from "@/lib/Chapter/chapterController";
 import dayjs from "dayjs";
 import Link from "next/link";
-import relativeTime from "dayjs/plugin/relativeTime"
 import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
+import DaysAgo from "./DaysAgo";
 
 export default async function LatestCHapterContainer() {
   const chapters = await getLatestChapters();
@@ -22,7 +19,7 @@ export default async function LatestCHapterContainer() {
 
   const premium = chapters.filter((e) => e.premium);
   const free = chapters.filter((e) => !e.premium);
-dayjs.extend(relativeTime)
+
   return (
     <Tabs defaultValue="Free" className="w-full self-start">
       <TabsList className="grid text-xs w-[170px] grid-cols-2 ">
@@ -47,7 +44,9 @@ dayjs.extend(relativeTime)
                     className="object-cover w-full max-md:h-44  h-52 rounded-md"
                   />
                 </div>
-                <CardFooter className=" text-xs items-start   w-full flex flex-col mt-1 p-1"><span className="text-sm">Chapter {e.no}</span><span></span><span className="line-clamp-1 text-[.7rem] text-muted-foreground">{dayjs(e.createdAt.toString()).fromNow()}</span></CardFooter>
+                <CardFooter className=" text-xs items-start   w-full flex flex-col mt-1 p-1"><span className="text-sm">Chapter {e.no}</span><span></span>
+                
+                <DaysAgo time={e.updatedAt} /></CardFooter>
               </Card>
             </Link></CarouselItem>
           ))}</CarouselContent>
@@ -73,7 +72,7 @@ dayjs.extend(relativeTime)
                 className="object-cover w-full max-md:h-44 h-52  rounded-md"
               />
             </div>
-            <CardFooter className=" text-xs items-start   w-full flex flex-col mt-1 p-1"><span className="text-sm">Chapter {e.no}</span><span></span><span className="line-clamp-1 text-[.7rem] text-muted-foreground">{dayjs(e.createdAt.toString()).fromNow()}</span></CardFooter>
+            <CardFooter className=" text-xs items-start   w-full flex flex-col mt-1 p-1"><span className="text-sm">Chapter {e.no}</span><span></span><DaysAgo time={e.createdAt.toString()}/></CardFooter>
           </Card>
         </Link></CarouselItem>
       ))}</CarouselContent>
