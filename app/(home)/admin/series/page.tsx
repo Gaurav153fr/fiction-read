@@ -32,6 +32,7 @@ import { Star } from "lucide-react";
 import { useUserContext } from "@/hooks/user";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import Genres from "@/constants/Genres";
 
 // Define the schema for form validation using Zod
 const FormSchema = z.object({
@@ -48,7 +49,7 @@ const FormSchema = z.object({
   status: z.string().min(1, {
     message: "select a series",
   }),
-  updateOn: z.string().array().min(1).max(3).default([]),
+  updateOn: z.string().array().min(1),
 });
 
 // Form component
@@ -73,7 +74,6 @@ export default function Page() {
 
   // Handle form submission
 
-  const genres = ["Action", "Comedy", "Drama", "Fantasy", "Horror"];
   const days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(genre);
@@ -139,10 +139,10 @@ export default function Page() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="w-full space-y-6 flex gap-5"
+              className="w-full space-y-6 flex gap-5 max-md:flex-col"
             >
               {/* English Title */}
-              <div className="w-2/3 flex flex-col gap-5">
+              <div className="md:w-2/3 flex flex-col gap-5">
                 <FormField
                   control={form.control}
                   name="title"
@@ -190,7 +190,16 @@ export default function Page() {
                     </FormItem>
                   )}
                 />
-
+ {/* Image Preview */}
+ {imagePreview && (
+            <div className="mt-4">
+              <img
+                src={imagePreview}
+                alt="Selected Image"
+                className="max-w-xs rounded-md"
+              />
+            </div>
+          )}
                 {/* Story */}
                 <FormField
                   control={form.control}
@@ -206,7 +215,7 @@ export default function Page() {
                   )}
                 />
               </div>
-              <div className="w-1/3 flex flex-col gap-5">
+              <div className="md:w-1/3 flex flex-col gap-5">
                 {/* {//status} */}
                 <FormField
                   control={form.control}
@@ -279,8 +288,8 @@ export default function Page() {
 
                 {/* Genre Selection */}
                 <span>Genres</span>
-                <div className="gap-2 flex">
-                  {genres.map((genre) => (
+                <div className="gap-2 flex flex-wrap">
+                  {Genres.map((genre) => (
                     <div className="flex items-center space-x-2 " key={genre}>
                       <Checkbox
                         id={genre}
@@ -325,16 +334,7 @@ export default function Page() {
             </form>
           </Form>
 
-          {/* Image Preview */}
-          {imagePreview && (
-            <div className="mt-4">
-              <img
-                src={imagePreview}
-                alt="Selected Image"
-                className="max-w-xs rounded-md"
-              />
-            </div>
-          )}
+         
         </>
       )}
     </div>

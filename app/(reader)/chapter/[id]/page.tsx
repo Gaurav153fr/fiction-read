@@ -18,7 +18,7 @@ const Page = async ({
   const chapter = await getChapterById(params.id);
 
   return (
-    <div className="w-full items-center flex flex-col relative px-2 md:px-40">
+    <div className="items-center flex flex-col relative w-screen overflow-x-hidden">
       {chapter ? (
         <>
           <ReadHeader
@@ -33,7 +33,7 @@ const Page = async ({
                 <BuyPremium id={params.id} content={chapter.content} />
               </div>
             ) : (
-              <div>
+              <div className="w-full" >
                 <ReadEditor content={chapter.content} />
               </div>
             )}

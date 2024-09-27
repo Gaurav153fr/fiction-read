@@ -38,17 +38,17 @@ const ReadHeader = ({
   }, []);
 
   return (
-    <div className="w-full fixed   z-10 ">
+    <div className=" fixed   z-10  w-full ">
       <div
-        className="w-screen  top-0   transition-transform "
+        className="  top-0   transition-transform   "
         style={{ transform: hidden ? "translateY(-100%)" : "translateY(0%)" }}
       >
-        <nav className="flex justify-between w-full items-center px-5 gap-10">
-          <div className="flex gap-2">
-            <Link href={`/novel/${id}`}>
+        <nav className="flex    items-center w-full   justify-between ">
+          <div className="flex gap-x-2">
+            <Link href={`/novel/${id}`} className="rounded-full bg-muted p-2">
               <ArrowLeft />
             </Link>
-            <Link href="/">
+            <Link href="/" className="rounded-full bg-muted p-2">
               <Home />
             </Link>
           </div>
@@ -56,7 +56,8 @@ const ReadHeader = ({
           <div className=" bg-muted px-2 max-md:text-sm text-center py-1 rounded-full my-5 line-clamp-2 ">
             Chapter {chapterNo}: {chapterTitle}
           </div>
-          {typeof Sheet === "function" ? <Sheet id={id} /> : Sheet}
+          <div>
+          {typeof Sheet === "function" ? <Sheet id={id} /> : Sheet}</div>
         </nav>
       </div>
       <div

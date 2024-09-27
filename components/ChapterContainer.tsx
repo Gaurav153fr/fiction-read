@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { getAllChapter } from "@/lib/Chapter/chapterController";
 import Link from "next/link";
 import {
@@ -161,7 +162,7 @@ const ChapterContainer = async ({
           )}
         </div>
       ) : (
-        <>No novel with this f***ing id</>
+        <>Can't find any chapter for this series</>
       )}
     </div>
   );

@@ -11,3 +11,5 @@ const DaysAgo = ({ time }: { time: string }) => {
 };
 
 export default DaysAgo;
+
+export  const revalidate =3600;

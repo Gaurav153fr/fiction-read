@@ -22,7 +22,7 @@ export async function GenreTabsCard({ genre }: { genre: string }) {
         }}
         className="relative "
       >
-        <CarouselContent className="basis-auto  outline-none ">
+        <CarouselContent className="basis-auto outline-none ">
           {series &&
             series.map((e, index) => (
               <CarouselItem
@@ -30,7 +30,7 @@ export async function GenreTabsCard({ genre }: { genre: string }) {
                 className="outline-none basis-auto"
               >
                 <Link href={`/novel/${e.id}`} className="outline-none">
-                  <Card className=" w-44 max-md:w-36 overflow-hidden max-md:h-[17rem] h-72 border hover:bg-slate-900 hover:border-slate-600 transition-all">
+                  <Card className="bg-[none] w-44 max-md:w-36 overflow-hidden max-md:h-[17rem] h-72 border hover:bg-slate-900 hover:border-slate-600 transition-all">
                     <div className="flex justify-center ">
                       <img
                         src={e.url}

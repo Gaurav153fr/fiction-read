@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     
-      <main>{children}</main>
+      <main className="w-screen overflow-hidden">{children}</main>
   
   )
 }

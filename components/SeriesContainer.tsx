@@ -8,10 +8,11 @@ const SeriesContainer = async () => {
   console.log(data);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 self-start w-full gap-2 ">
+    <section className="grid grid-flow-col w-full gap-5 max-md:grid-flow-row">
       {data &&
         data.map((e) => (
-          <Link href={`/novel/${e._id}`} key={e._id}>
+          <Link href={`/novel/${e._id}`} key={e._id} className=" h-52 w- max-md:w-full">
+
             <SeriesCard series={e} />
           </Link>
         ))}

@@ -36,7 +36,7 @@ export function ProfileDropDown() {
           <SignButton />
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link href="/redeem">Redeem</Link>
+          <Link href="/redeem">Buy coins</Link>
         </DropdownMenuItem>
         {user.user && user.user.admin && (
           <DropdownMenuGroup>

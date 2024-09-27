@@ -20,7 +20,7 @@ export function ChapterContainerSheet({id}:{id:string}) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline" ><List/></Button>
+        <Button variant="outline" className="mr-2 bg-muted rounded-full"><List/></Button>
       </SheetTrigger>
       <SheetContent className="p-2">
         <SheetHeader>

@@ -24,17 +24,23 @@ const firstChapter = await chapterModel.findOne({series:params.id,no:1})
               <img
                 src={series.url}
                 alt="main image"
-                className="object-cover h-full rounded-lg m-auto "
+                className="object-cover h-full rounded-lg m-auto bg-muted"
               />
             </div>
             <h2 className="font-bold text-xl font-sans text-center ">
               {series.title}
             </h2>
-           <Link href={`/chapter/${firstChapter.id}?n=${params.id}`} className={buttonVariants({variant: 'default'})} >Start Reading</Link>
+            <div className="text-md font-sans text-center"> 
+              Every {series.updateOn.map((e:string) => <span key={e} className="text-red-600 font-bold"> {e[0].toUpperCase() + e.slice(1, 3)}</span>)}
+            </div>
+            {firstChapter && (
+                         <Link href={`/chapter/${firstChapter.id}?n=${params.id}`} className={buttonVariants({variant: 'default'})} >Start Reading</Link>
+
+            )}
           </div>
           <div className="h-full w-full gap-3 flex flex-col py-10">
-            <div className="p-4  text-wrap bg-slate-900  rounded-lg mx-2">
-              {series.story}
+            <div className="p-4  text-wrap bg-slate-900  rounded-lg mx-2 ">
+              <p className="line-clamp-3">{series.story}</p>
             </div>
             <div className="p-4  text-wrap bg-slate-900 rounded-lg mx-2 gap-4 flex flex-wrap">
               <span className="w-fit bg-fuchsia-900 border border-fuchsia-600 rounded-full flex px-2 items-center  ">

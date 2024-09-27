@@ -1,4 +1,5 @@
 "use server";
+import { toast } from "@/components/ui/use-toast";
 import userModel from "./userModel";
 
 // Define a custom error class for more specific error handling
@@ -24,7 +25,7 @@ async function createUser(name: string, email: string) {
       const data = {
         email,
         name,
-        points: 50,
+        points: 10,
         admin: false,
         purchased: [],
       };
@@ -48,7 +49,7 @@ async function getUser(email: string, name: string) {
     const user = await userModel.findOne({ email, name }).lean<userType>();
 
     if (user != null) {
-      const data:userType = {
+      const data: userType = {
         _id: user._id.toString(),
         email: user.email,
         name: user.name,
@@ -56,16 +57,15 @@ async function getUser(email: string, name: string) {
         purchased: user.purchased,
         admin: user.admin,
       };
-     
 
       return data;
     } else {
       console.log("User not found");
-      return null
+      return null;
     }
   } catch (err: any) {
     console.error("Error fetching user:", err);
-    return null
+    return null;
   }
 }
 
@@ -78,6 +78,8 @@ async function buyChapter(id: string, points: number, chapter_id: string) {
       { $push: { purchased: chapter_id }, $inc: { points: -5 } },
       { new: true } // This option returns the modified document.
     );
+  } else {
+    return null;
   }
 }
 export { createUser, getUser, buyChapter };

@@ -73,7 +73,7 @@ const ReadingSetting = ({
     >
       <Button
         variant="outline"
-        className="rounded-full"
+        className="rounded-full bg-muted"
         onClick={handleScrollTop}
       >
         <ArrowUp />
@@ -81,7 +81,7 @@ const ReadingSetting = ({
 
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline" className="rounded-full">
+          <Button variant="outline" className="rounded-full bg-muted">
             <Settings />
           </Button>
         </PopoverTrigger>
@@ -126,6 +126,7 @@ const ReadingSetting = ({
                 </Button>
               </div>
             </div>
+            
             <div className="mt-4">
               <Select onValueChange={handleFontFamilyChange} value={fontFamily}>
                 <SelectTrigger className="w-full">
@@ -134,17 +135,21 @@ const ReadingSetting = ({
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Font Family</SelectLabel>
-                    <SelectItem value="open-sans" className="font-sans">
-                      Open Sans
-                    </SelectItem>
-                    <SelectItem value="sans-serif" className="font-serif">
-                      Sans Serif
-                    </SelectItem>
+                    
                     <SelectItem value="roboto" className="font-roboto">
                       Roboto
                     </SelectItem>
                     <SelectItem value="monospace" className="font-mono">
                       Monospace
+                    </SelectItem>
+                    <SelectItem value="Ubuntu" className="font-mono">
+                      Ubuntu
+                    </SelectItem>
+                    <SelectItem value="Comfortaa" className="font-mono">
+                      Comfortaa
+                    </SelectItem>
+                    <SelectItem value="Libre Baskerville" className="font-roboto">
+                    Libre Baskerville
                     </SelectItem>
                   </SelectGroup>
                 </SelectContent>

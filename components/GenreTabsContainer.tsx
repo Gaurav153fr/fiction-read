@@ -12,15 +12,15 @@ export function GenreTabs() {
 
       </TabsList>
       <TabsContent value="Action">
-        <GenreTabsCard genre="action" />
+        <GenreTabsCard genre="Action" />
       </TabsContent>
       <TabsContent value="Romance">
-        <GenreTabsCard genre="romance" />
+        <GenreTabsCard genre="Romance" />
       </TabsContent>
       <TabsContent value="Fantasy">
-        <GenreTabsCard genre="fantasy" />
+        <GenreTabsCard genre="Fantasy" />
       </TabsContent> <TabsContent value="Modern">
-        <GenreTabsCard genre="romance" />
+        <GenreTabsCard genre="Modern" />
       </TabsContent>
     </Tabs>
   );

@@ -43,7 +43,7 @@ const GoogleAd = () => {
   }, []);
 
   return (
-    <div ref={adRef}>
+    <div ref={adRef}> 
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}

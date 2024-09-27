@@ -20,7 +20,7 @@ const seriesSchema = new Schema<seriesType>(
     genres: [{ type: String, required: true }],
 
     status: { type: String, required: true },
-    updateOn:{type:Number,required:true}
+    updateOn:[{type:String,required:true}]
   },
   { timestamps: true }
 );
