@@ -61,7 +61,7 @@ const ChapterContainer = async ({
             <div>
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1" className="w-full   ">
-                  <AccordionTrigger className="flex  w-full  p-3 h-32 ">
+                  <AccordionTrigger className="flex  w-full  py-3 h-32 ">
                     <div className=" overflow-hidden  aspect-square  flex h-full relative ">
                       <img
                         src={
@@ -85,7 +85,7 @@ const ChapterContainer = async ({
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <ScrollArea className="border-l-4 border-blue-600">
+                    <ScrollArea className="border-l-4 border-yellow-600">
                       {premiumChapter.length > 0 &&
                         premiumChapter.map((e) => (
                           <>
@@ -114,7 +114,7 @@ const ChapterContainer = async ({
                 <Separator />
                 {freeChapter.length > 0 && (
                   <AccordionItem value="item-2" className="w-full h-32  ">
-                    <AccordionTrigger className="flex  w-full h-full p-3  ">
+                    <AccordionTrigger className="flex  w-full h-full py-3  ">
                       <div className=" overflow-hidden  aspect-square  flex h-full  ">
                         <img
                           src={freeChapter[0].thumbnail}
@@ -131,7 +131,7 @@ const ChapterContainer = async ({
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <ScrollArea className="border-l-4 border-blue-600">
+                      <ScrollArea className="border-l-4 border-yellow-600">
                         {freeChapter.map((e) => (
                           <>
                             <Link

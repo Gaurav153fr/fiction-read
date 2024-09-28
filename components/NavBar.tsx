@@ -9,10 +9,12 @@ const NavBar = () => {
       <div className="flex items-center align-middle">
         <Link
           href="/"
-          className="font-mono font-bold text-xl hover:text-yellow-500"
+          className="font-mono font-bold text-xl hover:text-yellow-500 flex items-center mx-2 gap-2"
         >
           {" "}
-          FICTION READ
+          {/* <span><img src="/logo.png" alt="logo" /></span> */}
+          <span className=" ml-1">FICTION READ</span>
+          
         </Link>
       </div>
 

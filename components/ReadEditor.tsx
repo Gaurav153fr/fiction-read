@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-
+import '@/components/font.css'
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useState } from "react";
@@ -10,7 +10,8 @@ import GoogleAd from "./PubFuture";
 import DisqusComponent from "./Disqus";
 
 const ReadEditor = ({ content }: { content: string }) => {
-  const url = window.location.href;
+  const url = typeof window !== "undefined" ? window.location.href : "";
+
   const id = url.substring(url.lastIndexOf("/") + 1);
   const [fontSize, setFontSize] = useState(16);
 
@@ -40,17 +41,7 @@ const ReadEditor = ({ content }: { content: string }) => {
 
   return (
     <div>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Comforter+Brush&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-        @import
-        url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
-        @import
-        url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-        @import
-        url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Comforter+Brush&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-      </style>
+      
       <div className="">
         <GoogleAd />
       </div>
@@ -74,6 +65,7 @@ const ReadEditor = ({ content }: { content: string }) => {
           }}
         />
       </div>
+      <div className='h-10 w-full '></div>
       <DisqusComponent
         article={{ url, id: id, title: content.substring(0, 100) }}
       />

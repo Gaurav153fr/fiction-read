@@ -1,5 +1,10 @@
 const Genres = [
   "Action",
+  "Adventure",
+  "Reversed-World",
+  "Harem",
+  "Game",
+  "Drama",
   "Academy",
   "Acting",
   "Genius",

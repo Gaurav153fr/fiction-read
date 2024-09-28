@@ -61,7 +61,7 @@ const ReadHeader = ({
         </nav>
       </div>
       <div
-        className="w-fit fixed bottom-0 z-10 right-10 transition-transform flex justify-end gap-2"
+        className="w-fit fixed bottom-0 z-10 right-10 max-md:right-2 transition-transform flex justify-end gap-2"
         style={{ transform: hidden ? "translateY(200%)" : "translateY(0%)" }}
       >
         <ChapterChange id={id} no={chapterNo} />

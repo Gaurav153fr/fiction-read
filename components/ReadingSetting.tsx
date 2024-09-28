@@ -68,7 +68,7 @@ const ReadingSetting = ({
   }
   return (
     <div
-      className="w-fixed fixed bottom-5 z-10 left-10 transition-transform flex justify-end gap-2"
+      className="w-fixed fixed bottom-5 z-10 left-10 max-md:left-2 transition-transform flex justify-end gap-2"
       style={{ transform: hidden ? "translateY(200%)" : "translateY(0%)" }}
     >
       <Button

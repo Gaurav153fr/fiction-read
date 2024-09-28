@@ -22,7 +22,7 @@ export function ChapterContainerSheet({id}:{id:string}) {
       <SheetTrigger asChild>
         <Button variant="outline" className="mr-2 bg-muted rounded-full"><List/></Button>
       </SheetTrigger>
-      <SheetContent className="p-2">
+      <SheetContent className="p-2 overflow-y-scroll">
         <SheetHeader>
           <SheetTitle>All Chapters</SheetTitle>
           {/* <SheetDescription>
@@ -30,6 +30,7 @@ export function ChapterContainerSheet({id}:{id:string}) {
           </SheetDescription> */}
         </SheetHeader>
        <ChapterContainer id={id} isSheet={true} />
+    
         {/* <SheetFooter>
           <SheetClose asChild>
             <Button type="submit">Save changes</Button>

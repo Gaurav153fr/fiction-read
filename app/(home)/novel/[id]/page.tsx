@@ -16,11 +16,12 @@ const firstChapter = await chapterModel.findOne({series:params.id,no:1})
   dayjs.extend(relativeTime);
 
   return (
-    <div className=" h-fit">
+    <div className="  h-fit">
       {series && (
-        <div className="flex h-fit max-md:flex-col">
-          <div className="flex flex-col h-full mx-10 gap-3  p-4  rounded-md my-5">
-            <div className=" h-64 w-full  py-5">
+        <div className="flex  max-md:flex-col h-full " >
+          <div className="flex flex-col h-full mx-10 max-md:mx-0 max-md:mb-2 gap-3   rounded-md overflow-hidden my-5 mb-0  bg-black  " style={{background:`url('${series.url}')`,backgroundSize:'cover'}}>
+           <div className="backdrop-blur-lg p-4 to-black bg-gradient-to-b from-slate-900/10 ">
+            <div className=" h-64 w-full  py-5 ">
               <img
                 src={series.url}
                 alt="main image"
@@ -30,15 +31,17 @@ const firstChapter = await chapterModel.findOne({series:params.id,no:1})
             <h2 className="font-bold text-xl font-sans text-center ">
               {series.title}
             </h2>
-            <div className="text-md font-sans text-center"> 
+            <div className="text-md font-sans text-center "> 
               Every {series.updateOn.map((e:string) => <span key={e} className="text-red-600 font-bold"> {e[0].toUpperCase() + e.slice(1, 3)}</span>)}
             </div>
+            <div className="text-center w-full flex justify-center my-2">
             {firstChapter && (
                          <Link href={`/chapter/${firstChapter.id}?n=${params.id}`} className={buttonVariants({variant: 'default'})} >Start Reading</Link>
 
-            )}
+            )}</div>
+            </div>
           </div>
-          <div className="h-full w-full gap-3 flex flex-col py-10">
+          <div className="h-full w-full gap-3 flex flex-col py-0 md:py-10">
             <div className="p-4  text-wrap bg-slate-900  rounded-lg mx-2 ">
               <p className="line-clamp-3">{series.story}</p>
             </div>
@@ -65,17 +68,19 @@ const firstChapter = await chapterModel.findOne({series:params.id,no:1})
 
 
             </div>
-            <div className="p-4  text-wrap bg-slate-900  rounded-lg mx-2 gap-2 flex">
+            <div className="p-4  text-wrap bg-slate-900  rounded-lg mx-2 gap-2 flex flex-wrap">
             <span className="w-fit bg-green-900 border border-green-600 rounded-full flex px-2 items-center  ">
   {series.status} <CircleDashed className="w-3 h-3 ml-2" />
 </span>
               {series.genres.map((e: string, i: string) => (
-                <span key={i} className="bg-slate-600 p-1 rounded-lg">
+                <span key={i} className="bg-slate-600 p-1 rounded-lg px-2">
                   {e[0].toUpperCase() + e.slice(1)}
                 </span>
               ))}
             </div>
-            <div className="p-4   my-2 rounded-lg mx-2 ">
+
+            <div className=" my-2 rounded-lg mx-2 ">
+              <h2 className=" mx-2 font-bold text-lg">Chapters</h2>
               <ChapterContainer id={params.id} isSheet={false}/>
             </div>
           </div>
