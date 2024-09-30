@@ -70,7 +70,7 @@ const BuyPremium = ({ id, content }: { id: string; content: string }) => {
           )}
         </div>
       ) : (
-        <div>login kar bhai</div>
+        <div>Login to continue</div>
       )}
     </div>
   );

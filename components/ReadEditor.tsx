@@ -57,7 +57,7 @@ const ReadEditor = ({ content }: { content: string }) => {
 
         <EditorContent
           editor={editor}
-          className="w-fit  "
+          className="w-fit max-w-[1500px] "
           style={{
             fontSize: `${fontSize}px`,
             fontFamily: fontFamily,
@@ -65,10 +65,13 @@ const ReadEditor = ({ content }: { content: string }) => {
           }}
         />
       </div>
-      <div className='h-10 w-full '></div>
+      <div className='h-10 w-full  '> </div>
+      <GoogleAd />
+      <div className='p-10 bg-muted rounded-md'>
+      <h3 className='self-start my-5 ml-10 font-bold text-xl '>Comments</h3>
       <DisqusComponent
         article={{ url, id: id, title: content.substring(0, 100) }}
-      />
+      /></div>
     </div>
   );
 };

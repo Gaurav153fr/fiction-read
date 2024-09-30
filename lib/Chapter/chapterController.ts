@@ -51,14 +51,15 @@ async function getChapterById(id: string) {
 async function ajuBajuChapter(id: string, no: number) {
   try {
     const prev = await chapterModel
-      .findOne({ series: id, no: { $lt: no } })
-      .select("_id");
-    console.log(prev);
+      .findOne({ series: id, no: { $lt: no } }).sort({ no: -1 })
+      .select("_id")
+    
     
     const next = await chapterModel
       .findOne({ series: id, no: { $gt: no } })
       .select("_id");
-    console.log(next);
+    
+    // console.log("aju baju chaptyer", prev, next);
     
     return [prev ? prev.id : null, next ? next.id : null];
   } catch (err) {
@@ -69,8 +70,9 @@ async function ajuBajuChapter(id: string, no: number) {
 
 async function getLatestChapters() {
   try {
-    const chapters = await chapterModel.find().sort({ updatedAt: -1 }).limit(15);
-    return chapters;
+    const chapters = await chapterModel.find({premium: false}).sort({ updatedAt: -1 }).limit(15);
+    const premiumChapters = await chapterModel.find({premium: true}).sort({ updatedAt: -1 }).limit(15);
+    return [...chapters, ...premiumChapters];
   } catch (err) {
     console.error("Error fetching latest chapters:", err);
     return null;
