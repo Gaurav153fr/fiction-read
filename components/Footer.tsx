@@ -23,7 +23,7 @@ const Footer = () => {
 
         <div className="text-sm text-gray-400">
           <div className="flex justify-center space-x-4">
-          All the novels and comics on this website are only previews of the original novels and comics, there may be many language errors, character names, and story lines. For the original version, please buy the novels and comic if it's available in your city.
+          All the novels and comics on this website are only previews of the original novels and comics, there may be many language errors, character names, and story lines. For the original version, please buy the novels and comic if its available in your city.
 
           </div>
           <p>Copyright © Fiction Read 2024</p>

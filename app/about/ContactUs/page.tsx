@@ -7,7 +7,7 @@ const Contact = () => {
 
       <p style={styles.text}>
         At <strong>FictionRead</strong>, we value your feedback, questions, and suggestions. 
-        We're here to assist you and provide the best possible reading experience. Please don't hesitate 
+        We&apos;re here to assist you and provide the best possible reading experience. Please don&apos;t hesitate 
         to reach out to us through the following contact options:
       </p>
 

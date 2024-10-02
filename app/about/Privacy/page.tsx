@@ -100,7 +100,7 @@ const PrivacyPolicy = () => {
         any third-party sites you visit.
       </p>
 
-      <h2 style={styles.subHeader}>8. Childrens Privacy</h2>
+      <h2 style={styles.subHeader}>8. Children&apos;s Privacy</h2>
       <p style={styles.text}>
         FictionRead is not intended for children under the age of 13. We do not
         knowingly collect personal information from children under 13. If we
@@ -150,4 +150,5 @@ const styles = {
     color: "#555",
   },
 };
+
 export default PrivacyPolicy;

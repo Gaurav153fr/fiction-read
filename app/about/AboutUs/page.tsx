@@ -6,8 +6,8 @@ const About = () => {
       <h1 style={styles.header}>About Us - FictionRead</h1>
 
       <p style={styles.text}>
-        At <strong>FictionRead</strong>, we're passionate about the magic of storytelling and the profound impact that literature can have on our lives. 
-        We believe that great stories should be accessible to everyone, regardless of language barriers, and we're here to bridge that gap.
+        At <strong>FictionRead</strong>, we&apos;re passionate about the magic of storytelling and the profound impact that literature can have on our lives. 
+        We believe that great stories should be accessible to everyone, regardless of language barriers, and we&apos;re here to bridge that gap.
       </p>
 
       <h2 style={styles.subHeader}>Our Mission</h2>
@@ -21,20 +21,20 @@ const About = () => {
       <p style={styles.text}>
         At <strong>FictionRead</strong>, we take great care in selecting and translating novels that capture the essence of their original language and culture. 
         Our team of talented translators and editors work tirelessly to ensure that the stories we present maintain their authenticity, while becoming accessible to a wider audience. 
-        We're not just translating words; we're preserving the soul of each story.
+        We&apos;re not just translating words; we&apos;re preserving the soul of each story.
       </p>
 
       <h2 style={styles.subHeader}>Why We Do It</h2>
       <p style={styles.text}>
-        We're not just a website; we're a community of avid readers and literature enthusiasts. We believe in the power of storytelling to connect people, spark imaginations, and foster empathy. 
+        We&apos;re not just a website; we&apos;re a community of avid readers and literature enthusiasts. We believe in the power of storytelling to connect people, spark imaginations, and foster empathy. 
         By sharing these stories with you, we hope to offer moments of escape, reflection, and inspiration in your busy lives.
       </p>
 
       <h2 style={styles.subHeader}>Join Us on This Journey</h2>
       <p style={styles.text}>
-        Whether you're a seasoned bookworm or a newcomer to the world of novels, we invite you to embark on this literary journey with us. 
+        Whether you&apos;re a seasoned bookworm or a newcomer to the world of novels, we invite you to embark on this literary journey with us. 
         Explore new worlds, meet intriguing characters, and experience the beauty of different cultures—all from the comfort of your screen. 
-        We are committed to continuously expanding our library, so there's always something new to discover.
+        We are committed to continuously expanding our library, so there&apos;s always something new to discover.
       </p>
 
       <h2 style={styles.subHeader}>Connect With Us</h2>
@@ -43,7 +43,7 @@ const About = () => {
       </p>
 
       <p style={styles.text}>
-        Thank you for choosing <strong>FictionRead</strong> as your literary companion. Together, let's explore the wonders of literature and share the joy of reading. 
+        Thank you for choosing <strong>FictionRead</strong> as your literary companion. Together, let&apos;s explore the wonders of literature and share the joy of reading. 
         Welcome to our world of stories.
       </p>
 
