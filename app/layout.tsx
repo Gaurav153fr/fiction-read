@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import SessionWrapper from "@/components/SessionWrapper";
 import UserContextProvider from "@/components/userContext";
+import Footer from "@/components/Footer";
 // import dynamic from "next/dynamic";
 // import type { NextTopLoaderProps } from 'nextjs-toploader';
 
@@ -13,7 +14,7 @@ import UserContextProvider from "@/components/userContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fiction Read - Read your favourite fiction",
+  title: "Fiction Read - Read Your Favourite Fiction",
   description: "From comedy to action, read your favourite fiction.",
 };
 
@@ -24,9 +25,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <head>
-       <link rel="icon" href="/favilogo.png" />
-      </head>
       <body className={inter.className}>
         <SessionWrapper>
           <UserContextProvider>
@@ -35,6 +33,7 @@ export default function RootLayout({
             <Toaster />
           </UserContextProvider>
         </SessionWrapper>
+        <Footer/>
       </body>
     </html>
   );

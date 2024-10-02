@@ -15,6 +15,7 @@ export default function Home() {
       <SeriesContainer />
       <h3 className="self-start my-5 font-bold text-lg ">By Genre</h3>
       <GenreTabs />
+      
     </main>
   );
 }
