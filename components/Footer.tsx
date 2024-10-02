@@ -7,8 +7,10 @@ const Footer = () => {
   return (
     <footer className="mt-20 bg-black text-white py-6">
       <div className="container mx-auto text-center">
-        <div className="flex justify-center mb-4 space-x-4">
-          
+        <div className="flex justify-center mb-4 text-[24] space-x-4">
+        <a href="https://discord.gg/JNKn3JE8mX" aria-label="Discord" target="_blank" rel="noopener noreferrer">
+        Discord
+          </a>
         </div>
 
         <div className="flex justify-center space-x-8 mb-4">
