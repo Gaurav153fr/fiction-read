@@ -4,8 +4,8 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import SessionWrapper from "@/components/SessionWrapper";
 import UserContextProvider from "@/components/userContext";
-import Footer from "@/components/Footer";
-import AdSense from "@/components/Adsense";
+import { cn } from "@/lib/utils";
+// import AdSense from "@/components/Adsense";
 // import dynamic from "next/dynamic";
 // import type { NextTopLoaderProps } from 'nextjs-toploader';
 
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <AdSense pId="3932379419816999" />
+        {/* <AdSense pId="3932379419816999" /> */}
       </head>
-      <body className={inter.className}>
+      <body className={cn(inter.className,"h-fit")}>
         <SessionWrapper>
           <UserContextProvider>
             {/* <ClientOnlyNextTopLoader /> */}
@@ -37,7 +37,7 @@ export default function RootLayout({
             <Toaster />
           </UserContextProvider>
         </SessionWrapper>
-        <Footer/>
+      
       </body>
     </html>
   );

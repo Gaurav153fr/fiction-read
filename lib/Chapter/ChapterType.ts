@@ -7,4 +7,5 @@ interface chapterType{
     series:string,
     premium:boolean,
     thumbnail:string
+    createdAt:Date
 }

@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { getAllChapter } from "@/lib/Chapter/chapterController";
 import Link from "next/link";
@@ -12,27 +13,36 @@ import { Separator } from "./ui/separator";
 import { LockKeyhole } from "lucide-react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Dispatch, SetStateAction } from "react";
-const ChapterContainer = async ({
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+const ChapterContainer = ({
   id,
   isSheet,
- 
 }: {
   id: string;
   isSheet: boolean;
- 
 }) => {
-  console.log(id, "kk");
+  const [chapters, setChapters] = useState<chapterType[]>([]);
+  const [premiumChapters, setPremiumChapters] = useState<chapterType[]>([]);
+  const [freeChapters, setFreeChapters] = useState<chapterType[]>([]);
+  useEffect(() => {
+    const handleAsync = async () => {
+      const chapters = await getAllChapter(id);
+      if (chapters == null) return;
+      const premiumChapter = chapters.filter((e) => e.premium == true);
+      const freeChapter = chapters.filter((e) => e.premium == false);
 
-  const chapters = await getAllChapter(id);
-  if (chapters == null) return <div>no chapters</div>;
+      setChapters(chapters);
+      setPremiumChapters(premiumChapter);
+      setFreeChapters(freeChapter);
+    };
 
-  const premiumChapter = chapters.filter((e) => e.premium == true);
-  const freeChapter = chapters.filter((e) => e.premium == false);
+    handleAsync();
+  });
+
   dayjs.extend(relativeTime);
 
   return (
-    <div className=" w-full ">
+    <div className=" w-full h-fit ">
       {chapters.length > 0 ? (
         <div>
           {isSheet ? (
@@ -40,8 +50,8 @@ const ChapterContainer = async ({
               {chapters.map((e) => (
                 <>
                   <Link
-                    key={e.id}
-                    href={`/chapter/${e.id}?n=${e.series}`}
+                    key={e._id}
+                    href={`/chapter/${e._id}?n=${e.series}`}
                     className="flex  flex-col px-2 py-3 hover:bg-slate-900"
                   >
                     <span className="text-muted-foreground ">
@@ -58,15 +68,15 @@ const ChapterContainer = async ({
               ))}
             </div>
           ) : (
-            <div>
+            <div >
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1" className="w-full   ">
                   <AccordionTrigger className="flex  w-full  py-3 h-32 ">
                     <div className=" overflow-hidden  aspect-square  flex h-full relative ">
                       <img
                         src={
-                          premiumChapter.length > 0
-                            ? premiumChapter[0].thumbnail
+                          premiumChapters.length > 0
+                            ? premiumChapters[0].thumbnail
                             : ""
                         }
                         alt=""
@@ -80,18 +90,18 @@ const ChapterContainer = async ({
                     <div className="flex  h-full flex-col ml-10 justify-center">
                       <span className="font-bold text-lg">Premium</span>
                       <span className="text-muted-foreground">
-                        {premiumChapter.length} Chapters
+                        {premiumChapters.length} Chapters
                       </span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     <ScrollArea className="border-l-4 border-yellow-600">
-                      {premiumChapter.length > 0 &&
-                        premiumChapter.map((e) => (
+                      {premiumChapters.length > 0 &&
+                        premiumChapters.map((e) => (
                           <>
                             <Link
-                              key={e.id}
-                              href={`/chapter/${e.id}?n=${e.series}`}
+                              key={e._id}
+                              href={`/chapter/${e._id}?n=${e.series}`}
                               className="flex  flex-col px-2 py-3 hover:bg-slate-900"
                             >
                               <span className="text-muted-foreground">
@@ -112,12 +122,12 @@ const ChapterContainer = async ({
                   </AccordionContent>
                 </AccordionItem>
                 <Separator />
-                {freeChapter.length > 0 && (
+                {freeChapters.length > 0 && (
                   <AccordionItem value="item-2" className="w-full h-32  ">
                     <AccordionTrigger className="flex  w-full h-full py-3  ">
                       <div className=" overflow-hidden  aspect-square  flex h-full  ">
                         <img
-                          src={freeChapter[0].thumbnail}
+                          src={freeChapters[0].thumbnail}
                           alt=""
                           className="h-full object-cover w-full rounded-xl"
                         />
@@ -126,34 +136,30 @@ const ChapterContainer = async ({
                       <div className="flex  h-full flex-col ml-10 justify-center">
                         <span className="font-bold text-lg">Free</span>
                         <span className="text-muted-foreground">
-                          {freeChapter.length} Chapters
+                          {freeChapters.length} Chapters
                         </span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent>
-                      <ScrollArea className="border-l-4 border-yellow-600">
-                        {freeChapter.map((e) => (
-                          <>
-                            <Link
-                              key={e.id}
-                              href={`/chapter/${e.id}?n=${e.series}`}
-                              className="flex  flex-col px-2 py-3 hover:bg-slate-900"
-                            >
-                              <span className="text-muted-foreground">
-                                {" "}
-                                Chapter {e.no}
-                              </span>
-                              <span className="font-bold text-lg">
-                                {e.title}
-                              </span>
-                              <span className="text-muted-foreground">
-                                {dayjs(e.createdAt.toString()).fromNow()}
-                              </span>
-                            </Link>
-                            <Separator />
-                          </>
-                        ))}
-                      </ScrollArea>
+                    <AccordionContent className="h-fit">
+                    <ScrollArea className="border-l-4 border-yellow-600 h-96 overflow-y-auto">
+  {freeChapters.map((e) => (
+    <>
+      <Link
+        key={e._id}
+        href={`/chapter/${e._id}?n=${e.series}`}
+        className="flex flex-col px-2 py-3 hover:bg-slate-900"
+      >
+        <span className="text-muted-foreground">Chapter {e.no}</span>
+        <span className="font-bold text-lg">{e.title}</span>
+        <span className="text-muted-foreground">
+          {dayjs(e.createdAt.toString()).fromNow()}
+        </span>
+      </Link>
+      <Separator />
+    </>
+  ))}
+</ScrollArea>
+
                     </AccordionContent>
                   </AccordionItem>
                 )}

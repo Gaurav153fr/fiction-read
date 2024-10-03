@@ -1,4 +1,5 @@
 import { CarouselSize } from "@/components/Carousal";
+import Footer from "@/components/Footer";
 import { GenreTabs } from "@/components/GenreTabsContainer";
 import LatestChapterContainer from "@/components/LatestChapterContainer";
 
@@ -15,7 +16,7 @@ export default function Home() {
       <SeriesContainer />
       <h3 className="self-start my-5 font-bold text-lg ">By Genre</h3>
       <GenreTabs />
-      
+      <Footer/>
     </main>
   );
 }
