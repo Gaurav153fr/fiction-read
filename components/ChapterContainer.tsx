@@ -37,7 +37,7 @@ const ChapterContainer = ({
     };
 
     handleAsync();
-  });
+  },[]);
 
   dayjs.extend(relativeTime);
 
@@ -168,7 +168,7 @@ const ChapterContainer = ({
           )}
         </div>
       ) : (
-        <>Can't find any chapter for this series</>
+        <>Loading chapters...</>
       )}
     </div>
   );
