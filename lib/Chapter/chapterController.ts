@@ -16,7 +16,7 @@ async function createChapter(data: any): Promise<boolean> {
 
 async function getAllChapter(id: string) {
   try {
-    const chapters = await chapterModel.find({ series: id }).lean<chapterType[]>();
+    const chapters = await chapterModel.find({ series: id }).lean<chapterType[]>().select("-content");
     return chapters;
   } catch (err) {
     console.error("Error fetching all chapters:", err);
