@@ -28,8 +28,10 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <AdSense pId="3932379419816999" />
+        <script defer src="https://cloud.umami.is/script.js" data-website-id={process.env.NEXT_PUBLIC_UAMI_ID}></script>
       </head>
       <body className={cn(inter.className,"h-fit")}>
+        
         <SessionWrapper>
           <UserContextProvider>
             {/* <ClientOnlyNextTopLoader /> */}
